@@ -17,5 +17,18 @@
     <footer>
         <p>Created by <strong>username</strong></p>
     </footer>
+     <script>
+        document.getElementById("fetchData").addEventListener("click", function() {
+            fetch("https://hhsv3ubiqa.execute-api.eu-north-1.amazonaws.com/")
+            .then(response => response.json()) // Convert response to JSON
+            .then(data => {
+                document.getElementById("apiResponse").innerText = "API Response: " + JSON.stringify(data);
+            })
+            .catch(error => {
+                document.getElementById("apiResponse").innerText = "Error fetching API.";
+                console.error("Error:", error);
+            });
+        });
+    </script>
 </body>
 </html>
