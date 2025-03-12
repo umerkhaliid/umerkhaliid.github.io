@@ -17,10 +17,19 @@
     <footer>
         <p>Created by <strong>username</strong></p>
     </footer>
-     <script>
+
+    <button id="fetchData">Get API Response</button>
+    <p id="apiResponse"></p>
+
+    <script>
         document.getElementById("fetchData").addEventListener("click", function() {
-            fetch("https://hhsv3ubiqa.execute-api.eu-north-1.amazonaws.com/")
-            .then(response => response.json()) // Convert response to JSON
+            fetch("https://hhsv3ubiqa.execute-api.eu-north-1.amazonaws.com/prod/MyWebAppFunction") 
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network response was not OK");
+                }
+                return response.json();
+            })
             .then(data => {
                 document.getElementById("apiResponse").innerText = "API Response: " + JSON.stringify(data);
             })
@@ -32,3 +41,4 @@
     </script>
 </body>
 </html>
+
